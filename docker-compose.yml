@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres-go-drive-2
+    environment:
+      POSTGRES_DB: go-drive
+      POSTGRES_USER: mustty
+      POSTGRES_PASSWORD: mustty132
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/database:/docker-entrypoint-initdb.d
+
+  rabbitmq:
+    image: "rabbitmq:3"
+    container_name: rabbitmq-go-drive-2
+    environment:
+      RABBITMQ_DEFAULT_USER: mustty
+      RABBITMQ_DEFAULT_PASS: mustty1325
+    ports:
+      - "5672:5672"
+
+volumes:
+  postgres_data:
